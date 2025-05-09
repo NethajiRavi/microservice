@@ -11,20 +11,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @OpenAPIDefinition(
-		info = @Info(
-				title = "Account Microservice Rest Api Documentation",
-				version = "v1",
-				contact = @Contact(
-						name = "Madan",
-						email = "jhdfsh@gmail"
-				),
-				license = @License(
-						name = "Apache2.0")
-		))
+        info = @Info(
+                title = "Account Microservice Rest Api Documentation",
+                version = "v1",
+                contact = @Contact(
+                        name = "Nethaji",
+                        email = "nethaji043@gmail.com"),
+                license = @License(name = "Apache2.0")))
 public class AccountsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AccountsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AccountsApplication.class, args);
+    }
 
 }
