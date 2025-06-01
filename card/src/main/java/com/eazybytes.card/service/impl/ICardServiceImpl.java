@@ -37,6 +37,31 @@ public class ICardServiceImpl implements ICardsService {
         return CardsMapper.mapToCardsDto(cards,new CardsDto());
     }
 
+    /**
+     * @param cardsDto -- cards Dto
+     * @return -- indicating if the update of card details is successful or not
+     */
+    @Override
+    public boolean updateCard(CardsDto cardsDto) {
+        Cards cards = cardsRepository.findByCardNumber(cardsDto.getCardNumber()).orElseThrow(
+                () -> new ResourceNotFoundException("Card", "CardNumber", cardsDto.getCardNumber()));
+        CardsMapper.mapToCards(cardsDto, cards);
+        cardsRepository.save(cards);
+        return  true;
+    }
+
+    /**
+     * @param mobileNumber -- mobile number of customer
+     * @return -- indicating if the deleted of card details is successful or not
+     */
+    @Override
+    public boolean deleteCard(String mobileNumber) {
+        Cards cards = cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
+                () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber));
+        cardsRepository.deleteById(cards.getCardId());
+        return  true;
+    }
+
     private Cards createNewCard(String mobileNumber) {
         Cards newCard = new Cards();
         long randomCardNumber = 100000000000L + new Random().nextInt(900000000);
